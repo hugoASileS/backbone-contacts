@@ -1,5 +1,7 @@
 import { Routes, Route, Outlet, useParams } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
+import { useEffect } from "react";
+import { getAllContacts } from "./services/ContactsServices";
 
 export default function App() {
   return (
