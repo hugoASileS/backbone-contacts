@@ -1,27 +1,33 @@
-import { screen } from "@testing-library/react";
+import { logRoles, screen } from "@testing-library/react";
 import App from "./App";
 import { renderWithRouter } from "./utils/tests";
 
 describe("all main routes should be shown", () => {
   test("Home page", () => {
-    renderWithRouter(<App />);
-    expect(screen.getByText(/Home/i)).toBeInTheDocument();
+    const { container } = renderWithRouter(<App />);
+    const header = screen.getByRole("heading", { level: 1, name: "Home" });
+    expect(header).toBeInTheDocument();
   });
   test("Contacts page", () => {
     renderWithRouter(<App />, { route: "/contacts" });
-    expect(screen.getByText(/Contacts/i)).toBeInTheDocument();
+    const header = screen.getByRole("heading", { level: 1 });
+    expect(header).toBeInTheDocument();
   });
+
   test("Email page", () => {
     renderWithRouter(<App />, { route: "/email" });
-    expect(screen.getByText(/Email/i)).toBeInTheDocument();
+    const header = screen.getByRole("heading", { level: 1 });
+    expect(header).toBeInTheDocument();
   });
   test("User page", () => {
     renderWithRouter(<App />, { route: "/user" });
-    expect(screen.getByText(/User/i)).toBeInTheDocument();
+    const header = screen.getByRole("heading", { level: 1 });
+    expect(header).toBeInTheDocument();
   });
   test("Role page", () => {
     renderWithRouter(<App />, { route: "/role" });
-    expect(screen.getByText(/Role/i)).toBeInTheDocument();
+    const header = screen.getByRole("heading", { level: 1 });
+    expect(header).toBeInTheDocument();
   });
 });
 
