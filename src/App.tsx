@@ -1,6 +1,9 @@
-import { Routes, Route, Outlet, useParams } from "react-router-dom";
+import { Routes, Route, Outlet } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import ListContact from "./pages/ListContact";
+import UpdateContact from "./pages/UpdateContact";
+import CreateContact from "./pages/CreateContact";
+import DeleteContact from "./pages/DeleteContact";
 
 export default function App() {
   return (
@@ -29,18 +32,4 @@ function ContactsContainer() {
       <Outlet />
     </div>
   );
-}
-
-function UpdateContact() {
-  let { contactId } = useParams();
-  return <h1>Update contact {contactId}</h1>;
-}
-
-function CreateContact() {
-  return <h1>Create contact</h1>;
-}
-
-function DeleteContact() {
-  let { contactId } = useParams();
-  return <h1>Delete contact {contactId}</h1>;
 }

@@ -7,6 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import { IconButton } from "@mui/material";
+import { Edit, Delete } from "@mui/icons-material";
 
 interface Column {
   id: "firstName" | "lastName" | "email" | "phone";
@@ -29,6 +31,8 @@ interface ITableParam {
   rowsPerPage: number;
   page: number;
   rows: Array<any>;
+  onEdit: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
 export default function TableWithPagination({
@@ -37,6 +41,8 @@ export default function TableWithPagination({
   rowsPerPage,
   page,
   rows,
+  onEdit,
+  onDelete,
 }: ITableParam) {
   return (
     <Paper sx={{ width: "100%" }}>
@@ -61,6 +67,7 @@ export default function TableWithPagination({
                   {column.label}
                 </TableCell>
               ))}
+              <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -77,6 +84,14 @@ export default function TableWithPagination({
                       </TableCell>
                     );
                   })}
+                  <TableCell>
+                    <IconButton onClick={() => onEdit(row._id)}>
+                      <Edit color="primary" />
+                    </IconButton>
+                    <IconButton onClick={() => onDelete(row._id)}>
+                      <Delete color="error" />
+                    </IconButton>
+                  </TableCell>
                 </TableRow>
               );
             })}

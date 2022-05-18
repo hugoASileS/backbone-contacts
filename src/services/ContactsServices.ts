@@ -16,6 +16,7 @@ export async function getAllContacts(
   try {
     const urlParams = new URLSearchParams(Object.entries(queryString));
     const response = await fetch(`${api}/contacts?` + urlParams);
+
     if (response.ok) {
       return await response.json();
     }

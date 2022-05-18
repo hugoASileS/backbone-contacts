@@ -35,9 +35,7 @@ describe("contacts", () => {
   const contactId = 12345;
   test("Update page", () => {
     renderWithRouter(<App />, { route: `/contacts/${contactId}/update` });
-    expect(
-      screen.getByText(new RegExp(`${contactId}`, "i"))
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Update Contact/i)).toBeInTheDocument();
   });
   test("Delete page", () => {
     renderWithRouter(<App />, { route: `/contacts/${contactId}/delete` });
@@ -47,7 +45,7 @@ describe("contacts", () => {
   });
   test("Create page", () => {
     renderWithRouter(<App />, { route: `/contacts/create` });
-    expect(screen.getByText(/Create contact/i)).toBeInTheDocument();
+    expect(screen.getByText(/New Contact/i)).toBeInTheDocument();
   });
   test("List page", () => {
     renderWithRouter(<App />, { route: `/contacts` });
