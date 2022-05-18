@@ -1,7 +1,6 @@
 import { Routes, Route, Outlet, useParams } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
-import { useEffect } from "react";
-import { getAllContacts } from "./services/ContactsServices";
+import ListContact from "./pages/ListContact";
 
 export default function App() {
   return (
@@ -30,10 +29,6 @@ function ContactsContainer() {
       <Outlet />
     </div>
   );
-}
-
-function ListContact() {
-  return <h2>List Contact</h2>;
 }
 
 function UpdateContact() {
