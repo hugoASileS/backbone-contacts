@@ -4,6 +4,6 @@ export interface IContactList {
   count: number;
   perPage: number;
   currentPage: number;
-  totalPage: number;
+  totalPages: number;
   results: Array<IContact>;
 }

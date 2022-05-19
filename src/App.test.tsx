@@ -1,6 +1,8 @@
-import { logRoles, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import App from "./App";
 import { renderWithRouter } from "./utils/tests";
+import store from "./store/store";
+import { Provider } from "react-redux";
 
 describe("all main routes should be shown", () => {
   test("Home page", () => {
@@ -9,7 +11,12 @@ describe("all main routes should be shown", () => {
     expect(header).toBeInTheDocument();
   });
   test("Contacts page", () => {
-    renderWithRouter(<App />, { route: "/contacts" });
+    renderWithRouter(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      { route: "/contacts" }
+    );
     const header = screen.getByRole("heading", { level: 1 });
     expect(header).toBeInTheDocument();
   });
@@ -48,7 +55,12 @@ describe("contacts", () => {
     expect(screen.getByText(/New Contact/i)).toBeInTheDocument();
   });
   test("List page", () => {
-    renderWithRouter(<App />, { route: `/contacts` });
+    renderWithRouter(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      { route: `/contacts` }
+    );
     expect(screen.getByText(/List Contact/i)).toBeInTheDocument();
   });
 });
