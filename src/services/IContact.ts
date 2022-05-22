@@ -8,4 +8,5 @@ export interface IContact {
   updatedAt?: string;
   __v?: number;
   id?: string;
+  actions?: string; // only in table
 }
