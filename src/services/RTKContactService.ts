@@ -40,6 +40,7 @@ export const contactsApi = createApi({
         }
         return queryParams;
       },
+      providesTags: ["Contacts"],
     }),
     getContactById: builder.query<IContact, { contactId: string }>({
       query: ({ contactId }) => `/contacts/${contactId}`,
