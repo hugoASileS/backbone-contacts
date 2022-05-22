@@ -3,9 +3,7 @@ import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { IColumn } from "./Table";
-import { IContact } from "../../services/IContact";
 import { UseFormRegister } from "react-hook-form/dist/types/form";
 
 export default function RowSearch({
@@ -17,8 +15,6 @@ export default function RowSearch({
   register: UseFormRegister<any>;
   onCleanSearch: () => void;
 }) {
-  const onSearch = () => {};
-
   return (
     <TableRow>
       {columns
@@ -36,9 +32,7 @@ export default function RowSearch({
           );
         })}
       <TableCell>
-        <Button onClick={onSearch} type="submit">
-          Search
-        </Button>
+        <Button type="submit">Search</Button>
         <Button onClick={onCleanSearch}>Clean</Button>
       </TableCell>
     </TableRow>

@@ -1,4 +1,4 @@
-import { logRoles, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import LinkList from "./LinkList";
 import { BrowserRouter } from "react-router-dom";
 

@@ -27,8 +27,8 @@ interface ITableParam<T> {
   rowsPerPage: number;
   page: number;
   rows: Array<any>;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
+  onEdit: (contact: IContact) => void;
+  onDelete: (contact: IContact) => void;
   count: number;
   isLoading: boolean;
   columns: T[];
@@ -125,10 +125,10 @@ export default function TableWithPagination<T extends IColumn>({
                         if (column.id === "actions") {
                           return (
                             <TableCell key="actions">
-                              <IconButton onClick={() => onEdit(row._id)}>
+                              <IconButton onClick={() => onEdit(row)}>
                                 <Edit color="primary" />
                               </IconButton>
-                              <IconButton onClick={() => onDelete(row._id)}>
+                              <IconButton onClick={() => onDelete(row)}>
                                 <Delete color="error" />
                               </IconButton>
                             </TableCell>

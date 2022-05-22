@@ -11,6 +11,8 @@ import {
 } from "../services/RTKContactService";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IContact } from "../services/IContact";
+import { useAppDispatch } from "../hooks/redux-app";
+import { selectContact } from "../store/features/contacts/contactSlice";
 
 const columns: IColumn[] = [
   { id: "firstName", label: "First Name", minWidth: 170 },
@@ -22,6 +24,7 @@ const columns: IColumn[] = [
 
 export default function ListContact() {
   let navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [sortProperty, setSortProperty] = React.useState("firstName");
@@ -51,6 +54,7 @@ export default function ListContact() {
     if (contains.length > 0) {
       setTermsSearch(contains);
     }
+    setPage(0);
   };
 
   const onPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,8 +105,14 @@ export default function ListContact() {
           isLoading={isLoading}
           count={data?.count ? data.count : 0}
           page={data?.currentPage ? data.currentPage - 1 : 0}
-          onEdit={(contactId) => navigate(`/contacts/${contactId}/update`)}
-          onDelete={(contactId) => navigate(`/contacts/${contactId}/delete`)}
+          onEdit={(contact: IContact) => {
+            dispatch(selectContact(contact));
+            navigate(`/contacts/${contact._id}/update`);
+          }}
+          onDelete={(contact: IContact) => {
+            dispatch(selectContact(contact));
+            navigate(`/contacts/${contact._id}/delete`);
+          }}
           rows={data?.results ? data.results : []}
           columns={columns}
           order={order}
