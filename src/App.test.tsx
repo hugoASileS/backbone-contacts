@@ -41,17 +41,32 @@ describe("all main routes should be shown", () => {
 describe("contacts", () => {
   const contactId = 12345;
   test("Update page", () => {
-    renderWithRouter(<App />, { route: `/contacts/${contactId}/update` });
+    renderWithRouter(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      { route: `/contacts/${contactId}/update` }
+    );
     expect(screen.getByText(/Update Contact/i)).toBeInTheDocument();
   });
   test("Delete page", () => {
-    renderWithRouter(<App />, { route: `/contacts/${contactId}/delete` });
+    renderWithRouter(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      { route: `/contacts/${contactId}/delete` }
+    );
     expect(
       screen.getByText(new RegExp(`${contactId}`, "i"))
     ).toBeInTheDocument();
   });
   test("Create page", () => {
-    renderWithRouter(<App />, { route: `/contacts/create` });
+    renderWithRouter(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      { route: `/contacts/create` }
+    );
     expect(screen.getByText(/New Contact/i)).toBeInTheDocument();
   });
   test("List page", () => {
